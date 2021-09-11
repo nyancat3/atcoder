@@ -26,16 +26,9 @@ typedef long long ll;
 
 int main()
 {
-    // Input
-    string in, after;
-    cin >> in;
-    cin >> after;
-
-    if (in == after.substr(0, after.length() - 1)) {
-        cout << "Yes";
-    } else {
-        cout << "No";
-    }
+    string s, t;
+    cin >> s >> t;
+    cout << (s < t ? "Yes" : "No") << endl;
 
     return 0;
 }
