@@ -10,16 +10,41 @@ int main()
 {
     int n;
     cin >> n;
-
-    vector<int> x(n), y(n);
+    vector<pair<int, int>> xys(n);
     rep(i, n) {
-        cin >> x[i] >> y[i];
+        cin >> xys[i].first >> xys[i].second;
     }
-
     string s;
     cin >> s;
 
-    cout << "" << endl;
-
+    unordered_map<int, int> ltor_x(n);
+    unordered_map<int, int> rtol_x(n);
+    string ans = "No";
+    rep(i, n) {
+        int x = xys[i].first;
+        int y = xys[i].second;
+        if (s[i] == 'R') {
+            if (ltor_x.count(y) > 0) {
+                if (x < ltor_x[y]) {
+                    ltor_x[y] = x;
+                }
+            } else {
+                ltor_x[y] = x;
+            }
+        } else { // 'L'
+            if (rtol_x.count(y) > 0) {
+                if (x > rtol_x[y]) {
+                    rtol_x[y] = x;
+                }
+            } else {
+                rtol_x[y] = x;
+            }
+        }
+        if (ltor_x.count(y) > 0 && rtol_x.count(y) > 0 && ltor_x[y] < rtol_x[y]) {
+            ans = "Yes";
+            break;
+        }
+    }
+    cout << ans << endl;
     return 0;
 }
