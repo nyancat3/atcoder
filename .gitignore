@@ -1,2 +1,4 @@
-*.out
 .vscode/
+a.out
+contest.acc.json
+test/
